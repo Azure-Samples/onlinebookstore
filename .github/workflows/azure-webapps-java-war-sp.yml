@@ -28,7 +28,7 @@ env:
 
 on:
   push:
-    branches: [ "master", "vermegi-workflowvariations" ]
+    branches: [ "master" ]
   workflow_dispatch:
 
 permissions:
