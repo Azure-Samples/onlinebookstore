@@ -11,13 +11,16 @@
 # 2. Create a secret in your repository named AZURE_WEBAPP_PUBLISH_PROFILE, paste the publish profile contents as the value of the secret.
 #    For instructions on obtaining the publish profile see: https://docs.microsoft.com/azure/app-service/deploy-github-actions#configure-the-github-secret
 #
-# 3. Change the value for the AZURE_WEBAPP_NAME. Optionally, change the JAVA_VERSION environment variable below.
+# 3. AZURE_WEBAPP_NAME needs to be created in the Github repo under Settings > Environments.
+#    Create a new Environment 'Development', then create a new environment variable with the name 'AZURE_WEBAPP_NAME' and the webapp name as the value.
+#
+# 4. Optionally, change the JAVA_VERSION environment variable below.
 #
 # For more information on GitHub Actions for Azure: https://github.com/Azure/Actions
 # For more information on the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
 # For more samples to get started with GitHub Action workflows to deploy to Azure: https://github.com/Azure/actions-workflow-samples
 
-name: Build and deploy JAR app to Azure Web App
+name: Build and deploy WAR app to Azure Web App using publish profile
 
 env:
   JAVA_VERSION: '11'                  # set this to the Java version to use
@@ -37,7 +40,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Set up Java version
         uses: actions/setup-java@v3.0.0
